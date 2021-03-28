@@ -47,6 +47,7 @@ public class Home extends HttpServlet {
 		ArrayList<FoodStuff> FoodStuffs = (ArrayList<FoodStuff>) session.getAttribute("foodstuffs");
             
     	viewData.add(new KeyValue("foodstuffs", FoodStuffs));
+    	
     	StringWriter renderedHtml = TemplateHelper.getTemplate("templates/home.vm", viewData);
         
         PrintWriter out = response.getWriter();

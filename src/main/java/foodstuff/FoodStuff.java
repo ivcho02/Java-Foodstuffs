@@ -9,7 +9,7 @@ public class FoodStuff {
 	public FoodStuff() {}
 	
 	public FoodStuff(String name) {
-			this.setName(name);
+		this.setName(name);
 	}
 
 	public String getName() {
