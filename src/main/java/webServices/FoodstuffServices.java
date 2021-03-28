@@ -35,7 +35,8 @@ public class FoodstuffServices {
 		FoodStuffs.add(newFoodStuff);
 		
 		HttpSession session = request.getSession();
-
+		
+		session.setMaxInactiveInterval(2000000);
 		session.setAttribute("foodstuffs", FoodStuffs);
 		
     	return FoodStuffs;
