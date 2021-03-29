@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  
 @XmlRootElement
 public class FoodStuff {
+	private int id;
 	private String name;
 	private String weight;
 	private String bestBefore;
@@ -12,7 +13,8 @@ public class FoodStuff {
 	
 	public FoodStuff() {}
 	
-	public FoodStuff(String name, String weight, String bestBefore, String evergyValue, String price) {
+	public FoodStuff(int id, String name, String weight, String bestBefore, String evergyValue, String price) {
+		this.id = id;
 		this.setName(name);
 		this.setWeight(weight);
 		this.setBestBefore(bestBefore);
@@ -58,5 +60,13 @@ public class FoodStuff {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -7,12 +7,15 @@ import java.util.Properties;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.app.event.implement.IncludeRelativePath;
+import org.apache.velocity.runtime.RuntimeConstants;
 
 public class TemplateHelper {
 	public static StringWriter getTemplate(String templateName, ArrayList<KeyValue> viewData) {
 		Properties p = new Properties();
     	
     	p.setProperty("resource.loader", "class");
+    	p.setProperty(RuntimeConstants.EVENTHANDLER_INCLUDE, IncludeRelativePath.class.getName());
     	p.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 
         VelocityEngine velocityEngine = new VelocityEngine();
