@@ -1,0 +1,38 @@
+#include("header.vm")
+
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<form action="/Foodstuffs/webapi/foodstuffs" id="foodStuffForm" data-id="$foodstuff.id" data-method="$method">
+				<div class="form-group">
+			    	<label for="name">Name</label>
+			    	<input type="text" name="name" class="form-control" id="name" value="$foodstuff.name" placeholder="Enter name..">
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="weight">Weight</label>
+			    	<input type="number" name="weight" class="form-control" id="weight" value="$foodstuff.weight" placeholder="Enter weight..">
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="bestBefore">Best Before</label>
+			    	<input type="date" name="bestBefore" class="form-control" id="bestBefore" value="$foodstuff.date" placeholder="Enter best before date..">
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="eneryValue">Enery Value</label>
+			    	<input type="number" name="eneryValue" class="form-control" id="eneryValue" value="$foodstuff.energyValue" placeholder="Enter Enery Value..">
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="price">Price</label>
+			    	<input type="number" name="price" class="form-control" id="price" value="$foodstuff.price" placeholder="Enter price..">
+			  	</div>
+			  	
+			  	<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+#include("footer.vm")

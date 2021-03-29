@@ -12,34 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import foodstuff.FoodStuff;
-import webServices.FoodstuffServices;
 
-public class Home extends HttpServlet {
+public class EditFoodstuff extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    FoodstuffServices services = new FoodstuffServices();
        
-    public Home() {
+    public EditFoodstuff() {
         super();
-    }
-    
-    public void initLocalStorage(HttpSession session) {
-		if(session.getAttribute("foodstuffs") == null)
-			session.setAttribute("foodstuffs", new ArrayList<FoodStuff>());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	ArrayList<KeyValue> viewData = new ArrayList<KeyValue>();
     	
+    	String id = request.getParameter("id");
+    	
     	HttpSession session = request.getSession();
     	
-    	initLocalStorage(session);
-    	
 		ArrayList<FoodStuff> FoodStuffs = (ArrayList<FoodStuff>) session.getAttribute("foodstuffs");
-            
-    	viewData.add(new KeyValue("foodstuffs", FoodStuffs));
+          
+		for (FoodStuff foodstuff : FoodStuffs) {
+			if (foodstuff.getId() == Integer.parseInt(id)) {
+				viewData.add(new KeyValue("foodstuff", foodstuff));
+				
+				break;
+			}
+		}
+		
+		viewData.add(new KeyValue("method", "PUT"));
     	
-    	StringWriter renderedHtml = TemplateHelper.getTemplate("templates/home.vm", viewData);
+    	StringWriter renderedHtml = TemplateHelper.getTemplate("templates/addFoodstuff.vm", viewData);
         
         PrintWriter out = response.getWriter();
         out.println(renderedHtml);

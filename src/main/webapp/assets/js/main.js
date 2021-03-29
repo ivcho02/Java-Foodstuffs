@@ -3,28 +3,40 @@
  */
 
 window.addEventListener('load', function () {
-	var insertForm = document.querySelector("#addFoodstuff");
+	var foodStuffForm = document.querySelector("#foodStuffForm");
 	var deleteFoodStuffButtons = document.querySelectorAll(".delete__foodstuff-button");
 	
-	insertForm.addEventListener("submit", function (event) {
-		event.preventDefault();
-		
-		var formData = new FormData(event.target);
-		
-		fetch('/Foodstuffs/webapi/foodstuffs', {
-			method: 'POST',
-			body: JSON.stringify(Object.fromEntries(formData)),
-			headers: {
-				'Content-type': 'application/json; charset=UTF-8'
+	if (foodStuffForm) {		
+		foodStuffForm.addEventListener("submit", function (event) {
+			event.preventDefault();
+			
+			var form = event.target;
+			var formData = new FormData(form);
+			var httpMethod = form.getAttribute("data-method");
+			
+			if (httpMethod === "PUT") {
+				var editId = form.getAttribute("data-id");
+				
+				formData.append("id", editId)
 			}
-		}).then(function (response) {
-			console.log(response);
-		}).then(function (data) {
-			console.log(data);
-		}).catch(function (error) {
-			console.warn(error);
+			
+			fetch('/Foodstuffs/webapi/foodstuffs', {
+				method: httpMethod,
+				body: JSON.stringify(Object.fromEntries(formData)),
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8'
+				}
+			}).then(function (response) {
+				if (response.ok) {
+					window.location.href = "/Foodstuffs/Home";
+				}
+			}).then(function (data) {
+				console.log(data);
+			}).catch(function (error) {
+				console.warn(error);
+			});
 		});
-	});
+	}
 	
 	if (deleteFoodStuffButtons) {		
 		deleteFoodStuffButtons.forEach(function (deleteButton) {
@@ -44,5 +56,5 @@ window.addEventListener('load', function () {
 				});
 			});
 		});
-	}
+	}	
 });

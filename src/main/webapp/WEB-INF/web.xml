@@ -11,9 +11,29 @@
     	<description></description>
     	<servlet-class>general.Home</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>AddFoodstuff</servlet-name>
+    	<display-name>AddFoodstuff</display-name>
+    	<description></description>
+    	<servlet-class>general.AddFoodstuff</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>EditFoodstuff</servlet-name>
+    	<display-name>EditFoodstuff</display-name>
+    	<description></description>
+    	<servlet-class>general.EditFoodstuff</servlet-class>
+    </servlet>
 
     <servlet-mapping>
     	<servlet-name>Home</servlet-name>
     	<url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>AddFoodstuff</servlet-name>
+    	<url-pattern>/AddFoodstuff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>EditFoodstuff</servlet-name>
+    	<url-pattern>/EditFoodstuff</url-pattern>
     </servlet-mapping>
 </web-app>
